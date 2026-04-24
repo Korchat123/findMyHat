@@ -92,10 +92,11 @@ class field{
     }
     }
     checkPlayerMove(newX,newY){
-                let oldX=this.player.posX;
-                let oldY=this.player.posY;
-                if(newX>=this.sizeX||newY>=this.sizeY)
-               { console.log("Out of Map");
+                // let oldX=this.player.posX;
+                // let oldY=this.player.posY;
+                if(newX>=this.sizeX||newX<=-1||newY>=this.sizeY||newY<=-1)
+               { console.log("Out of Map Game Over");
+                return "lose";
                }
                 else{
                 let result=this.checkOccupie(newX,newY)
@@ -104,10 +105,11 @@ class field{
                     return "";
                 }else if(result==="hole"){
                       this.player.setPos(newX,newY);
-                      this.createTable();
-                      this.showTable();
-                    console.log("There is a hole");
-                      this.player.setPos(oldX,oldY);
+                    //   this.createTable();
+                    //   this.showTable();
+                    console.log("There is a hole GameOver");
+                    return "lose";
+                    //   this.player.setPos(oldX,oldY);
 
 
                     return "";
@@ -134,7 +136,7 @@ class field{
             default:console.log("wrong input");
                 }
          
-                if(result==="goal"){
+                if(result==="goal"||result==="lose"){
                     return;
                 }
                 else{
